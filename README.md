@@ -85,12 +85,16 @@ This application requires email credentials for sending alerts. We recommend usi
 - Budget forecasting based on historical data
 - Mobile app integration
 
-## Contributing
-Contributions to Smart Budget are welcome! Please feel free to submit a Pull Request.
+## Engineering Note — Anomaly Detection Architecture
+
+The core of SmartBudget is a text classification + threshold alerting pipeline. The same architectural pattern — input normalisation → feature extraction → probabilistic classification → threshold-triggered alert → notification — underlies commercial SIEM behavioural analytics engines.
+
+In this project:
+- TF-IDF = feature extraction from raw text (equivalent to log parsing/normalisation)
+- Naive Bayes = probabilistic category classification (equivalent to rule-based + ML threat scoring)
+- Budget threshold = detection rule (equivalent to SIEM correlation rules)
+- SMTP alert = incident notification (equivalent to SOAR playbook trigger)
+
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-- Thanks to all contributors who have helped shape Smart Budget
-- Special thanks to the Streamlit team for making web app development with Python so accessible
